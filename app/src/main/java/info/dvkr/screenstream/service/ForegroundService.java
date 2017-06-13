@@ -99,11 +99,11 @@ public final class ForegroundService extends Service {
         };
         mHttpServer = new HttpServer();
 
-        getAppData().getImageQueue().clear();
+        getAppData().getImageQueue().clear(); //清空缓存队列
         mNotifyImageGenerator = new NotifyImageGenerator(getApplicationContext());
-        mNotifyImageGenerator.addDefaultScreen();
+        mNotifyImageGenerator.addDefaultScreen(); //添加数据到缓存队列
 
-        // Starting thread Handler
+        // Starting thread Handler 开启handler线程
         mHandlerThread = new HandlerThread(
                 ForegroundService.class.getSimpleName(),
                 Process.THREAD_PRIORITY_MORE_FAVORABLE);

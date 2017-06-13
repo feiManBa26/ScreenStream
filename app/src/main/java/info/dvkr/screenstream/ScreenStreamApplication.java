@@ -3,9 +3,6 @@ package info.dvkr.screenstream;
 import android.app.Application;
 import android.util.Log;
 
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
-
 import java.io.IOException;
 import java.net.SocketException;
 
@@ -24,19 +21,19 @@ public class ScreenStreamApplication extends Application {
     private MainActivityViewModel mMainActivityViewModel;
     private PreferencesHelper mPreferencesHelper;
 
-    private RefWatcher refWatcher;
+//    private RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sAppInstance = this;
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        refWatcher = LeakCanary.install(this);
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        refWatcher = LeakCanary.install(this);
 
         RxJavaPlugins.setErrorHandler(e -> {
             if (e instanceof UndeliverableException) {
@@ -83,7 +80,7 @@ public class ScreenStreamApplication extends Application {
         return sAppInstance.mPreferencesHelper;
     }
 
-    public static RefWatcher getRafWatcher() {
-        return sAppInstance.refWatcher;
-    }
+//    public static RefWatcher getRafWatcher() {
+//        return sAppInstance.refWatcher;
+//    }
 }
